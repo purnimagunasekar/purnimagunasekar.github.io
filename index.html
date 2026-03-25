@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purnima Gunasekar — AI Strategy & Founder Advisory</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0e0c;
+    --sand: #f5f0e8;
+    --cream: #faf8f4;
+    --gold: #b8963e;
+    --gold-light: #e8d9b5;
+    --warm-gray: #8a8478;
+    --rule: #d9d0be;
+    --accent: #2c3e2d;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.4rem 4rem;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 400; letter-spacing: 0.08em;
+    color: var(--ink); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--warm-gray);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 4rem 6rem 4rem;
+    background: var(--ink);
+    color: var(--cream);
+    position: relative; overflow: hidden;
+  }
+  .hero-left::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(184,150,62,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 0.68rem; font-weight: 400; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.6rem;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 1.8rem;
+  }
+  .hero-name em { font-style: italic; color: var(--gold-light); }
+  .hero-tagline {
+    font-size: 1.0rem; font-weight: 300; line-height: 1.75;
+    color: rgba(250,248,244,0.72);
+    max-width: 420px;
+    margin-bottom: 2.8rem;
+    border-left: 2px solid var(--gold);
+    padding-left: 1.2rem;
+  }
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-bottom: 3rem;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem; font-weight: 300;
+    color: var(--gold); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.68rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(250,248,244,0.5);
+    margin-top: 0.3rem;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    padding: 0.9rem 2rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.75rem; font-weight: 400; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: all 0.3s; width: fit-content;
+  }
+  .hero-cta:hover { background: var(--gold); color: var(--ink); }
+  .hero-cta .arrow { transition: transform 0.3s; }
+  .hero-cta:hover .arrow { transform: translateX(4px); }
+
+  .hero-right {
+    background: var(--sand);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 4rem;
+    position: relative;
+  }
+  .expertise-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 2rem;
+  }
+  .expertise-card {
+    background: var(--cream);
+    padding: 1.8rem 1.4rem;
+    transition: background 0.25s;
+    cursor: default;
+  }
+  .expertise-card:hover { background: #fff; }
+  .exp-icon {
+    font-size: 1.4rem; margin-bottom: 0.8rem;
+    display: block;
+  }
+  .exp-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; font-weight: 600;
+    margin-bottom: 0.4rem; line-height: 1.3;
+  }
+  .exp-sub {
+    font-size: 0.72rem; color: var(--warm-gray);
+    line-height: 1.5;
+  }
+  .right-header {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem; font-weight: 300;
+    font-style: italic; color: var(--ink);
+  }
+  .right-header strong { font-style: normal; font-weight: 600; }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-size: 0.68rem; font-weight: 400; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300; line-height: 1.15;
+    max-width: 680px;
+    margin-bottom: 3.5rem;
+  }
+  .rule { width: 48px; height: 1px; background: var(--gold); margin-bottom: 2rem; }
+
+  /* ── ABOUT ── */
+  .about { background: #fff; }
+  .about-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem;
+    align-items: start;
+  }
+  .about-left { position: sticky; top: 120px; }
+  .credential-block { margin-top: 2.5rem; }
+  .credential-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1rem 0; border-bottom: 1px solid var(--rule);
+  }
+  .credential-item:first-child { border-top: 1px solid var(--rule); }
+  .cred-icon { color: var(--gold); font-size: 0.9rem; margin-top: 2px; flex-shrink: 0; }
+  .cred-text { font-size: 0.82rem; color: var(--warm-gray); line-height: 1.5; }
+  .cred-text strong { color: var(--ink); font-weight: 500; display: block; margin-bottom: 0.1rem; }
+
+  .about-right p {
+    font-size: 1.05rem; line-height: 1.85;
+    color: #3a3830; margin-bottom: 1.4rem;
+  }
+  .about-right p strong { color: var(--ink); font-weight: 500; }
+  .highlight-box {
+    background: var(--sand);
+    border-left: 3px solid var(--gold);
+    padding: 1.4rem 1.6rem;
+    margin-top: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; font-style: italic;
+    color: var(--ink); line-height: 1.6;
+  }
+
+  /* ── SERVICES ── */
+  .services { background: var(--ink); color: var(--cream); }
+  .services .section-title { color: var(--cream); max-width: 100%; }
+  .services-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+    margin-top: 4rem;
+  }
+  .service-card {
+    background: var(--ink);
+    padding: 2.5rem 2rem;
+    border-top: 2px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .service-card:hover {
+    border-top-color: var(--gold);
+    background: #1a1915;
+  }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300;
+    color: rgba(184,150,62,0.25);
+    line-height: 1; margin-bottom: 1.5rem;
+  }
+  .service-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600;
+    color: var(--cream); margin-bottom: 0.8rem;
+  }
+  .service-desc {
+    font-size: 0.82rem; color: rgba(250,248,244,0.55);
+    line-height: 1.7; margin-bottom: 1.4rem;
+  }
+  .service-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .pill {
+    font-size: 0.65rem; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border: 1px solid rgba(184,150,62,0.35);
+    color: rgba(184,150,62,0.8);
+    border-radius: 2px;
+  }
+
+  /* ── IMPACT ── */
+  .impact { background: var(--sand); }
+  .impact-inner { max-width: 1200px; margin: 0 auto; }
+  .impact-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-bottom: 4rem;
+  }
+  .impact-card {
+    background: #fff; padding: 2rem;
+    border-bottom: 3px solid var(--gold-light);
+    transition: border-bottom-color 0.25s;
+  }
+  .impact-card:hover { border-bottom-color: var(--gold); }
+  .impact-co {
+    font-size: 0.65rem; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--warm-gray);
+    margin-bottom: 0.6rem;
+  }
+  .impact-badge {
+    display: inline-block;
+    font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    background: var(--gold-light); color: var(--gold);
+    border-radius: 2px; margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .impact-result {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem; font-weight: 600;
+    line-height: 1.25; color: var(--ink);
+    margin-bottom: 0.7rem;
+  }
+  .impact-detail {
+    font-size: 0.8rem; color: var(--warm-gray); line-height: 1.6;
+  }
+
+  /* ── ENGAGEMENT ── */
+  .engagement { background: #fff; }
+  .engagement-inner { max-width: 1200px; margin: 0 auto; }
+  .engagement-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    margin-top: 1rem;
+  }
+  .eng-card {
+    border: 1px solid var(--rule); padding: 2.5rem 2rem;
+    position: relative; transition: box-shadow 0.3s;
+  }
+  .eng-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.06); }
+  .eng-card.featured {
+    border-color: var(--gold); background: var(--ink); color: var(--cream);
+  }
+  .eng-badge {
+    position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--ink);
+    font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.2rem 1rem;
+  }
+  .eng-type {
+    font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem; font-weight: 500;
+  }
+  .eng-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 600; line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .eng-card.featured .eng-name { color: var(--cream); }
+  .eng-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 300; line-height: 1;
+    color: var(--gold); margin: 1.2rem 0;
+  }
+  .eng-price span { font-size: 1rem; color: var(--warm-gray); }
+  .eng-card.featured .eng-price span { color: rgba(250,248,244,0.5); }
+  .eng-includes { list-style: none; margin: 1.2rem 0 2rem; }
+  .eng-includes li {
+    font-size: 0.8rem; padding: 0.45rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; gap: 0.6rem;
+    color: var(--warm-gray);
+  }
+  .eng-card.featured .eng-includes li { border-bottom-color: rgba(255,255,255,0.1); color: rgba(250,248,244,0.65); }
+  .eng-includes li::before {
+    content: '—'; color: var(--gold); font-size: 0.7rem; flex-shrink: 0;
+  }
+  .eng-cta {
+    display: block; text-align: center;
+    padding: 0.8rem; border: 1px solid currentColor;
+    text-decoration: none; font-size: 0.72rem; letter-spacing: 0.1em;
+    text-transform: uppercase; font-weight: 400;
+    transition: all 0.25s;
+  }
+  .eng-cta { color: var(--ink); }
+  .eng-cta:hover { background: var(--ink); color: var(--cream); }
+  .eng-card.featured .eng-cta { color: var(--gold); border-color: var(--gold); }
+  .eng-card.featured .eng-cta:hover { background: var(--gold); color: var(--ink); }
+
+  /* ── CREDENTIALS STRIP ── */
+  .creds-strip {
+    background: var(--sand);
+    padding: 3.5rem 4rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .creds-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; gap: 4rem; flex-wrap: wrap;
+  }
+  .creds-label {
+    font-size: 0.65rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--warm-gray);
+    flex-shrink: 0;
+  }
+  .creds-list {
+    display: flex; gap: 2.5rem; flex-wrap: wrap; align-items: center;
+  }
+  .cred-chip {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.0rem; font-weight: 400;
+    color: var(--ink);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .cred-chip::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0;
+  }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--ink); color: var(--cream); text-align: center; padding: 7rem 4rem; }
+  .contact .section-label { justify-content: center; display: flex; }
+  .contact .section-title { color: var(--cream); margin: 0 auto 1.5rem; text-align: center; }
+  .contact-sub {
+    font-size: 1rem; color: rgba(250,248,244,0.55);
+    max-width: 520px; margin: 0 auto 3rem;
+    line-height: 1.75;
+  }
+  .contact-email {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 300;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184,150,62,0.4);
+    padding-bottom: 0.2rem;
+    transition: border-color 0.2s;
+    margin-bottom: 3rem;
+  }
+  .contact-email:hover { border-color: var(--gold); }
+  .contact-meta {
+    font-size: 0.75rem; color: rgba(250,248,244,0.35);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0a0909; color: rgba(250,248,244,0.3);
+    padding: 2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.7rem; letter-spacing: 0.06em;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .about-inner, .impact-grid, .services-grid, .engagement-grid { grid-template-columns: 1fr; }
+    nav { padding: 1.2rem 1.5rem; }
+    section { padding: 5rem 1.5rem; }
+    .hero-left { padding: 5rem 1.5rem; }
+    .creds-inner { flex-direction: column; gap: 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Purnima Gunasekar</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#engage">Engage</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-left">
+    <p class="hero-eyebrow">AI Strategy · Founder Advisory · Startup Coach</p>
+    <h1 class="hero-name">Purnima<br><em>Gunasekar</em></h1>
+    <p class="hero-tagline">
+      I help founders move from ambiguity to structured strategy — aligning AI product vision with measurable, market-ready execution.
+    </p>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">14+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">100+</div>
+        <div class="stat-label">Customer Interviews</div>
+      </div>
+      <div>
+        <div class="stat-num">5×</div>
+        <div class="stat-label">Revenue Growth</div>
+      </div>
+    </div>
+    <a href="#contact" class="hero-cta">Start a Conversation <span class="arrow">→</span></a>
+  </div>
+  <div class="hero-right">
+    <p class="right-header">Six pillars of<br><strong>strategic clarity</strong></p>
+    <div class="expertise-grid">
+      <div class="expertise-card">
+        <span class="exp-icon">🧭</span>
+        <div class="exp-title">Vision → Execution</div>
+        <div class="exp-sub">Align founder vision with KPIs and quarterly plans</div>
+      </div>
+      <div class="expertise-card">
+        <span class="exp-icon">🤖</span>
+        <div class="exp-title">AI Product Strategy</div>
+        <div class="exp-sub">LLMs, RAG, intelligent automation roadmaps</div>
+      </div>
+      <div class="expertise-card">
+        <span class="exp-icon">🔭</span>
+        <div class="exp-title">Market Intelligence</div>
+        <div class="exp-sub">ICP, whitespace, competitive positioning</div>
+      </div>
+      <div class="expertise-card">
+        <span class="exp-icon">🏰</span>
+        <div class="exp-title">MOAT Design</div>
+        <div class="exp-sub">Defensibility, data moats, network effects</div>
+      </div>
+      <div class="expertise-card">
+        <span class="exp-icon">🚀</span>
+        <div class="exp-title">Go-To-Market</div>
+        <div class="exp-sub">Launch, early traction & experimentation</div>
+      </div>
+      <div class="expertise-card">
+        <span class="exp-icon">⚙️</span>
+        <div class="exp-title">Operating Model</div>
+        <div class="exp-sub">OKRs, KPIs, agile execution discipline</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS STRIP -->
+<div class="creds-strip">
+  <div class="creds-inner">
+    <div class="creds-label">Background &amp; Credentials</div>
+    <div class="creds-list">
+      <div class="cred-chip">Georgia Tech MBA — Technology &amp; Entrepreneurship</div>
+      <div class="cred-chip">Infosys · Fiserv · Bank of America</div>
+      <div class="cred-chip">Georgia Tech VentureLab &amp; Create-X Alumni</div>
+      <div class="cred-chip">Female Founders Program · Atlanta Tech Angels</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-left fade-up">
+      <div class="section-label">About</div>
+      <div class="rule"></div>
+      <h2 class="section-title" style="font-size:1.9rem;">Enterprise rigor meets startup agility.</h2>
+      <div class="credential-block">
+        <div class="credential-item">
+          <div class="cred-icon">◆</div>
+          <div class="cred-text">
+            <strong>Georgia Tech MBA</strong>
+            Management of Technology &amp; Entrepreneurship. Trained under Prof. Keith McGreggor.
+          </div>
+        </div>
+        <div class="credential-item">
+          <div class="cred-icon">◆</div>
+          <div class="cred-text">
+            <strong>Co-Founder, Califta (PebbleJet)</strong>
+            Zero-to-one product development, MVP, customer discovery.
+          </div>
+        </div>
+        <div class="credential-item">
+          <div class="cred-icon">◆</div>
+          <div class="cred-text">
+            <strong>Enterprise Transformation</strong>
+            14+ years at Infosys, Fiserv, Bank of America — cloud, data platforms, risk systems.
+          </div>
+        </div>
+        <div class="credential-item">
+          <div class="cred-icon">◆</div>
+          <div class="cred-text">
+            <strong>Global Market Immersion</strong>
+            U.S., Panama, Vietnam &amp; Singapore — cross-market strategy experience.
+          </div>
+        </div>
+        <div class="credential-item">
+          <div class="cred-icon">◆</div>
+          <div class="cred-text">
+            <strong>Atlanta, GA</strong>
+            Open to in-person &amp; remote engagements worldwide.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about-right fade-up">
+      <p>I began my career in enterprise technology — leading data, cloud, and transformation programs at <strong>Infosys, Fiserv, and Bank of America</strong>. Over 14 years, I built a deep appreciation for structured execution, rigorous systems, and what it takes to scale.</p>
+      <p>Then I went back to school. At <strong>Georgia Tech's MBA program</strong>, I immersed myself in entrepreneurship — conducting over 100 customer discovery interviews, co-founding a startup, and learning the lean startup lifecycle from the inside. I discovered what founders need isn't just strategy — it's a thinking partner who has lived both sides of the table.</p>
+      <p>Today, I work with <strong>early-stage and growth-stage founders</strong> across AI, SaaS, eCommerce, and fintech to bridge the gap between big vision and disciplined execution. I've advised mid-size companies & startups, helping them build product-market clarity, defensible moats, and GTM momentum.</p>
+      <p>My edge is rare: I bring <strong>AI strategy expertise, enterprise-grade execution frameworks, and authentic founder empathy</strong> — all in one engagement.</p>
+      <div class="highlight-box">
+        "From ambiguity to structured strategy to measurable execution — that's the journey I guide every founder through."
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-label" style="color:var(--gold);">Services</div>
+    <div class="rule"></div>
+    <h2 class="section-title" style="color:var(--cream);">Six areas of deep<br>strategic advisory.</h2>
+    <div class="services-grid fade-up">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-title">Vision → Execution Alignment</div>
+        <p class="service-desc">Close the gap between where founders want to go and what the team is actually building. I establish decision-making frameworks, prioritization systems, and OKR structures that stick.</p>
+        <div class="service-pills">
+          <span class="pill">OKRs</span><span class="pill">KPIs</span><span class="pill">Roadmaps</span><span class="pill">Goal Alignment</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-title">AI Product Strategy</div>
+        <p class="service-desc">Define AI-first product roadmaps leveraging LLMs, RAG, and intelligent automation. Identify high-ROI use cases and translate business problems into deployable AI solutions.</p>
+        <div class="service-pills">
+          <span class="pill">LLMs</span><span class="pill">RAG</span><span class="pill">AI Roadmap</span><span class="pill">Automation</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-title">Market & Competitive Intelligence</div>
+        <p class="service-desc">Deep customer discovery, competitor analysis, and whitespace mapping. Refine your ICP and value proposition with data, not assumptions.</p>
+        <div class="service-pills">
+          <span class="pill">ICP</span><span class="pill">Discovery</span><span class="pill">Positioning</span><span class="pill">Whitespace</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-title">MOAT & Business Model Design</div>
+        <p class="service-desc">Define your defensibility — data moats, workflow lock-in, network effects. Design scalable monetization strategies stress-tested with lean startup principles.</p>
+        <div class="service-pills">
+          <span class="pill">Defensibility</span><span class="pill">Monetization</span><span class="pill">Network Effects</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <div class="service-title">Go-To-Market Strategy</div>
+        <p class="service-desc">End-to-end GTM — from ICP segmentation and messaging to launch execution and early traction. I've helped companies grow from $1M to $5M in revenue through refined GTM positioning.</p>
+        <div class="service-pills">
+          <span class="pill">GTM</span><span class="pill">Launch</span><span class="pill">Segmentation</span><span class="pill">Traction</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <div class="service-title">Operating Model & Execution</div>
+        <p class="service-desc">Implement agile workflows, cross-functional alignment systems, and execution rigor. Help early-stage teams build the muscle for disciplined, repeatable delivery.</p>
+        <div class="service-pills">
+          <span class="pill">Agile</span><span class="pill">Execution</span><span class="pill">Cross-functional</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact" id="impact">
+  <div class="impact-inner">
+    <div class="section-label">Selected Impact</div>
+    <div class="rule"></div>
+    <h2 class="section-title">Results that speak<br>for themselves.</h2>
+    <div class="impact-grid fade-up">
+      <div class="impact-card">
+        <div class="impact-co">eCommerce Startup</div>
+        <div class="impact-badge">GTM &amp; Growth</div>
+        <div class="impact-result">$1M → $5M Revenue in 3 Years</div>
+        <p class="impact-detail">Refined positioning and GTM strategy helped cross the chasm from early adopters to early majority through market segmentation and channel execution.</p>
+      </div>
+      <div class="impact-card">
+        <div class="impact-co">Financial Startup</div>
+        <div class="impact-badge">Product Strategy</div>
+        <div class="impact-result">Vision → Structured Roadmap</div>
+        <p class="impact-detail">Defined product roadmap, feature prioritization, and user stories — translating founder vision into a structured product development plan with clear milestones.</p>
+      </div>
+      <div class="impact-card">
+        <div class="impact-co">Travel Platform</div>
+        <div class="impact-badge">AI + GTM Advisory</div>
+        <div class="impact-result">AI Roadmap + GTM Blueprint</div>
+        <p class="impact-detail">Built end-to-end GTM strategy, conducted customer analysis, and advised on AI-driven capabilities roadmap — positioning the platform for next-gen travel experiences.</p>
+      </div>
+      <div class="impact-card">
+        <div class="impact-co">Multiple Startups</div>
+        <div class="impact-badge">AI Transformation</div>
+        <div class="impact-result">AI Readiness & Adoption</div>
+        <p class="impact-detail">Led AI readiness and transformation initiatives aligning adoption with business goals. Designed AI-driven product strategies integrating LLM capabilities into core offerings.</p>
+      </div>
+      <div class="impact-card">
+        <div class="impact-co">Georgia Tech Create-X</div>
+        <div class="impact-badge">Startup Research</div>
+        <div class="impact-result">100+ Customer Interviews</div>
+        <p class="impact-detail">Conducted rigorous customer discovery across multiple segments — building and validating startup concepts using lean startup, experimentation, and MVP validation frameworks.</p>
+      </div>
+      <div class="impact-card">
+        <div class="impact-co">Early-Stage Teams</div>
+        <div class="impact-badge">Execution Systems</div>
+        <div class="impact-result">OKR/KPI Adoption</div>
+        <p class="impact-detail">Established OKRs and execution systems improving delivery discipline. Accelerated transition from idea to structured roadmap across multiple early-stage teams.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENT -->
+<section class="engagement" id="engage">
+  <div class="engagement-inner">
+    <div class="section-label">Engagement Model</div>
+    <div class="rule"></div>
+    <h2 class="section-title">Choose the right<br>engagement for your stage.</h2>
+    <div class="engagement-grid fade-up">
+      <div class="eng-card">
+        <div class="eng-type">Hourly Advisory</div>
+        <div class="eng-name">On-Demand Strategy</div>
+        <div class="eng-price">$200–$350 <span>/ hour</span></div>
+        <ul class="eng-includes">
+          <li>Focused strategy sessions</li>
+          <li>Specific problem-solving</li>
+          <li>No long-term commitment</li>
+          <li>5–10 hour deposit to begin</li>
+          <li>Billed bi-weekly</li>
+        </ul>
+        <a href="#contact" class="eng-cta">Inquire →</a>
+      </div>
+      <div class="eng-card featured">
+        <div class="eng-badge">Most Popular</div>
+        <div class="eng-type">Monthly Retainer</div>
+        <div class="eng-name">Fractional Advisor</div>
+        <div class="eng-price">$4,000–$8,000 <span>/ month</span></div>
+        <ul class="eng-includes">
+          <li>2–4 deep-dive sessions/month</li>
+          <li>Async support &amp; reviews</li>
+          <li>OKR &amp; roadmap oversight</li>
+          <li>Priority response within 24hrs</li>
+          <li>Signed agreement + deposit</li>
+        </ul>
+        <a href="#contact" class="eng-cta">Inquire →</a>
+      </div>
+      <div class="eng-card">
+        <div class="eng-type">Project-Based</div>
+        <div class="eng-name">Defined Deliverable</div>
+        <div class="eng-price">$5,000–$20,000 <span>/ project</span></div>
+        <ul class="eng-includes">
+          <li>GTM strategy &amp; playbook</li>
+          <li>AI product strategy blueprint</li>
+          <li>Market &amp; competitive analysis</li>
+          <li>50% upfront deposit</li>
+          <li>Clear scope &amp; milestones</li>
+        </ul>
+        <a href="#contact" class="eng-cta">Inquire →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-label">Let's Connect</div>
+  <div class="rule" style="margin:1rem auto 2rem;"></div>
+  <h2 class="section-title">Ready to turn your vision<br>into a winning strategy?</h2>
+  <p class="contact-sub">Whether you're pre-seed or Series A, I work with founders who are serious about building with clarity, structure, and speed.</p>
+  <a href="mailto:purnimagunasekar@gmail.com" class="contact-email">purnimagunasekar@gmail.com</a>
+  <p class="contact-meta">Atlanta, GA &nbsp;·&nbsp; Available Globally &nbsp;·&nbsp; In-person &amp; Remote</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Purnima Gunasekar · AI Strategy &amp; Founder Advisory</span>
+  <span>Atlanta, GA &nbsp;|&nbsp; purnimagunasekar@gmail.com</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 120);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
